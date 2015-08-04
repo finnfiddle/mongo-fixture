@@ -24,7 +24,6 @@
   "dependencies": {
     "async": "^1.4.0",
     "coffee-script": "^1.9.3",
-    "easy-tree": "0.0.3",
     "lodash": "^3.10.0",
     "mongodb": "^2.0.39"
   },
