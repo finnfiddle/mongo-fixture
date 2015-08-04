@@ -4,7 +4,7 @@
   "description": "Easily populate mongodb using json files with relationships intact.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "coffee test/index.coffee"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "author": "Finn Fitzsimons <finn@datamail.io>",
   "license": "MIT",
   "dependencies": {
+    "async": "^1.4.0",
     "coffee-script": "^1.9.3",
     "easy-tree": "0.0.3",
     "lodash": "^3.10.0",

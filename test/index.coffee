@@ -1,42 +1,47 @@
-MongoClient = require('mongodb').MongoClient
+_ = require('lodash')
 test = require('tape')
 path = require('path')
+MongoClient = require('mongodb').MongoClient
 fixture = require('../index')
-# ObjectID = require('mongodb').ObjectID
-
 
 test('fixture', (t) ->
-  t.plan(6)
+  t.plan(14)
 
   MongoClient.connect('mongodb://127.0.0.1:27017/mongo_fixture_test', (err, db) ->
+    t.error(err)
 
-    verb = (action, query, colName, next) ->
+    find = (query, colName, next) ->
       collection = db.collection(colName)
-      collection[action](query, (err, result) ->
-        t.error(err)
-        next(result)
+      collection.find({}, (err, cursor) ->
+        cursor.toArray((err, result) ->
+          t.error(err)
+          next(result)
+        )
       )
 
-    t.error(err)
-    verb('remove', {}, 'Users', () ->
-      verb('remove', {}, 'Plans', () ->
-        verb('remove', {}, 'SpecialOffers', () ->
-          fixture(path.join(__dirname, './data.json'), () ->
-            verb('count', {}, 'Users', (result) ->
-              console.log(result)
-              t.equal(result, 3)
-            )
-            #   collection.insert({a:2}, (err, docs) ->
-                
-            #     collection.count((err, count) ->
-            #       console.log(format("count = %s", count))
-            #     )
+    where = (arr, query, num) ->
+        t.equal(_.where(arr, query).length, num)
 
-            #     collection.find().toArray((err, results) ->
-            #       console.dir(results)
-            #       db.close()
-            #     )
-            #   )
+    fixture(path.join(__dirname, './data.json'), () ->
+      find({}, 'User', (users) ->
+        t.equal(users.length, 4)
+        where(users, {username: 'User A'}, 1)
+        where(users, {username: 'User B'}, 1)
+        where(users, {username: 'User C'}, 1)
+        where(users, {username: 'User D'}, 1)
+        where(users, {age: 20}, 2)
+
+        find({}, 'Plan', (plans) ->
+          t.equal(plans.length, 2)
+
+          find({}, 'SpecialOffer', (offers) ->
+            t.equal(offers.length, 2)
+
+            find({}, 'OtherThing', (things) ->
+              t.equal(things.length, 1)
+
+              db.close()
+            )
           )
         )
       )
