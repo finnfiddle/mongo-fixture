@@ -1,0 +1,51 @@
+[
+	{
+		"__collection": "User",
+		"username": "User A",
+		"age": 20,
+		"active": false,
+		"plan": {
+			"__collection": "Plan",
+			"__ref": "1",
+			"name": "Plan A",
+			"price": 100,
+			"private": true,
+			"specialOffer": {
+				"__collection": "SpecialOffer",
+				"propX": "X"
+			},
+			"otherProp": {
+				"__collection": "OtherThing",
+				"__ref": "1"
+			}
+		}
+	},
+	{
+		"__collection": "User",
+		"username": "User B",
+		"age": 30,
+		"active": true,
+		"plan": {
+			"__collection": "Plan",
+			"__duplicate": "1"
+		}
+	},
+	{
+		"__collection": "User",
+		"username": "User C",
+		"age": 32,
+		"active": true,
+		"plan": {
+			"__collection": "Plan",
+			"__duplicate": "1",
+			"specialOffer": {
+				"__collection": "SpecialOffer",
+				"propX": "Y"
+			},
+			"otherProp": {
+				"__collection": "OtherThing",
+				"__ref": "1"
+			}
+		}
+	}
+]

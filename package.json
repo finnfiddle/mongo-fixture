@@ -1,0 +1,33 @@
+{
+  "name": "mongo-fixture",
+  "version": "1.0.0",
+  "description": "Easily populate mongodb using json files with relationships intact.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:finnnn/mongo-fixture.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "fixture",
+    "populate",
+    "json",
+    "scaffold",
+    "relationships"
+  ],
+  "author": "Finn Fitzsimons <finn@datamail.io>",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.9.3",
+    "easy-tree": "0.0.3",
+    "lodash": "^3.10.0",
+    "mongodb": "^2.0.39"
+  },
+  "devDependencies": {
+    "tape": "^4.0.1"
+  }
+}
