@@ -1,15 +1,7 @@
 {
   "name": "mongo-fixture",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Easily populate mongodb using json files with relationships intact.",
-  "main": "index.js",
-  "scripts": {
-    "test": "coffee test/index.coffee"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@bitbucket.org:finnnn/mongo-fixture.git"
-  },
   "keywords": [
     "mongo",
     "mongodb",
@@ -19,15 +11,46 @@
     "scaffold",
     "relationships"
   ],
-  "author": "Finn Fitzsimons <finn@datamail.io>",
   "license": "MIT",
-  "dependencies": {
-    "async": "^1.4.0",
-    "coffee-script": "^1.9.3",
-    "lodash": "^3.10.0",
-    "mongodb": "^2.0.39"
+  "options": {
+    "mocha": "--require scripts/mocha_runner src/**/__tests__/**/*.js"
+  },
+  "scripts": {
+    "prepublish": ". ./scripts/prepublish.sh",
+    "lint": "eslint ./src",
+    "lintfix": "eslint ./src --fix",
+    "testonly": "mocha $npm_package_options_mocha",
+    "test": "npm run lint && npm run testonly",
+    "test-watch": "npm run testonly -- --watch --watch-extensions js"
   },
   "devDependencies": {
-    "tape": "^4.0.1"
+    "nodemon": "1.7.x",
+    "mocha": "2.x.x",
+    "chai": "3.x.x",
+    "eslint": "1.7.x",
+    "babel-eslint": "4.x.x",
+    "eslint-plugin-babel": "2.x.x",
+    "babel-cli": "6.x.x",
+    "babel-core": "6.x.x",
+    "babel-polyfill": "6.x.x",
+    "babel-preset-es2015": "6.x.x",
+    "babel-preset-stage-2": "6.x.x",
+    "babel-plugin-transform-runtime": "6.x.x"
+  },
+  "author": "Finn Fitzsimons <>",
+  "bugs": {
+    "url": "https://github.com/finnfiddle/mongo-fixture/issues"
+  },
+  "homepage": "https://github.com/finnfiddle/mongo-fixture",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finnfiddle/mongo-fixture.git"
+  },
+  "dependencies": {
+    "async": "^1.4.0",
+    "babel-runtime": "6.x.x",
+    "its-set": "^1.1.5",
+    "lodash": "^3.10.0",
+    "mongodb": "^2.0.39"
   }
 }
