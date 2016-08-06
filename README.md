@@ -1,9 +1,9 @@
 Mongo Fixture
 =============
 
-Easily populate a Mongo db using nested json for development and testing purposes.
-Configure which nested objects are created as separate documents in seperate collections.
-Relationships are preserved by referencing ObjectId's of child documents.
+Node module for populating a Mongo db using JSON.
+
+Declaratively reference other documents in the same dataset to create relationships between them.
 
 Install
 -------
@@ -21,7 +21,7 @@ fixture = require('mongo-fixture');
 fixture('data.json', function(error){
 	if(err){
 		throw err;
-	} 
+	}
 });
 ```
 

@@ -62,14 +62,7 @@ export default (...args) => {
     }
     Object.keys(d).forEach(k => {
       const v = d[k];
-      if (_.isObject(v) && k !== '_id') {
-        if (itsSet(v.__id) && itsSet(v.__id.__collection) && itsSet(v.__id.__ref)) {
-          d[k] = refs[v.__id.__collection][v.__id.__ref]._id;
-        }
-        else {
-          assignIds(v);
-        }
-      }
+      if (_.isObject(v) && k !== '_id') assignIds(v);
     });
   };
 
@@ -90,6 +83,9 @@ export default (...args) => {
           else {
             d[k] = v._id;
           }
+        }
+        else if (itsSet(v.__id) && itsSet(v.__id.__collection) && itsSet(v.__id.__ref)) {
+          d[k] = refs[v.__id.__collection][v.__id.__ref]._id;
         }
         else {
           flatten(v);
