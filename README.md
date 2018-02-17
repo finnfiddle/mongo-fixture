@@ -1,5 +1,5 @@
-Mongo Fixture
-=============
+Mongo Fixture (Unmaintained)
+============================
 
 Node module for populating a Mongo db using JSON.
 
